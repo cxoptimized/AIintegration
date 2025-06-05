@@ -1,3 +1,3 @@
-# CX Optimized – AI Integration Tool
+# CX AI Roadmap Tool
 
-Generated project boilerplate for Vercel.
+Generated project boilerplate.
