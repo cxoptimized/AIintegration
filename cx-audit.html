@@ -1,0 +1,65 @@
+
+<!-- CX Audit Tool HTML (Section-by-Section Form) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CX Audit Tool</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <form id="audit-form">
+    <h2>Human CX Systems</h2>
+    <label for="systems">Which systems do you currently use?</label>
+    <select name="systems" multiple required>
+      <option>CRM</option><option>Email Platform</option><option>Phone</option>
+      <option>IVR</option><option>Live Chat</option><option>POS</option>
+      <option>Help Desk</option><option>Knowledge Base</option>
+    </select>
+
+    <h2>AI Tools</h2>
+    <label for="ai_tools">What AI tools are currently in place?</label>
+    <select name="ai_tools" multiple>
+      <option>ChatGPT</option><option>Grammarly</option><option>Drift</option>
+      <option>Zapier AI</option><option>Custom Bots</option>
+    </select>
+
+    <h2>Manual Tasks</h2>
+    <label for="manual_tasks">What tasks are still manual?</label>
+    <select name="manual_tasks" multiple>
+      <option>Email Replies</option><option>Data Entry</option>
+      <option>Call Routing</option><option>Knowledge Management</option>
+    </select>
+
+    <h2>Automation Goals</h2>
+    <label for="goals">What do you want to automate?</label>
+    <select name="goals" multiple>
+      <option>Customer Service</option><option>Lead Qualification</option>
+      <option>Appointment Scheduling</option><option>CX Analytics</option>
+    </select>
+
+    <h2>Contact Info</h2>
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="email" name="email" placeholder="Email Address" required />
+    <button type="submit">Generate My Report</button>
+  </form>
+
+  <script>
+    document.getElementById('audit-form').onsubmit = async function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const response = await fetch('/api/generate-report', {
+        method: 'POST',
+        body: formData
+      });
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "CX_Audit_Report.pdf";
+      a.click();
+    };
+  </script>
+</body>
+</html>
