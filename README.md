@@ -1,2 +1,3 @@
-# AIintegration
-AI Integration Audit
+# CX Optimized – AI Integration Tool
+
+Generated project boilerplate for Vercel.
